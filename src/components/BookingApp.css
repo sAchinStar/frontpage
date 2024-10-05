@@ -10,12 +10,22 @@ body {
   background-color: #f4f4f4;
   padding: 20px;
   background-color: rgb(163, 189, 181);
+  background-color: rgb(163, 189, 181);
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 10px;
+}
+
+
+#check{
+  color: white;
+}
+
+#bt1:hover{
+background-color: #28a745;
 }
 
 /* Room Cards */
@@ -159,7 +169,7 @@ button {
 }
 
 button:hover {
-  background-color: #218838;
+  background-color: #216b88;
 }
 
 /* Make Table Responsive */

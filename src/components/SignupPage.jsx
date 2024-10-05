@@ -59,7 +59,10 @@ const Signup = ({ setIsSignedUp }) => {
 
     // If all validations pass
     setIsSignedUp(true);
-    navigate('/login');
+    // navigate('/login');
+    // navigate("/loginpage")
+   
+
   };
 
   // Validate phone number (Indian phone number validation as an example)
@@ -99,6 +102,11 @@ const Signup = ({ setIsSignedUp }) => {
   const handleCaptcha = () => {
     setCaptchaVerified(!captchaVerified);
   };
+
+  
+  function handlSignup(){
+    navigate("/loginpage")
+  }
 
   return (
     <>
@@ -177,7 +185,7 @@ const Signup = ({ setIsSignedUp }) => {
             <label style={{ marginLeft: '5px' }}>I'm not a robot (CAPTCHA)</label>
           </CheckboxWrapper>
 
-          <Button type="submit" disabled={!termsAccepted || !captchaVerified}>Signup</Button>
+          <Button  type="submit" disabled={!termsAccepted || !captchaVerified} onClick={handlSignup}>Signup</Button>
         </form>
       </FormWrapper>
     </>

@@ -494,27 +494,212 @@
 
 
 
-// ...
+// // ...
 
-import React, { useState, useEffect } from "react";
+// import React, { useState, useEffect } from "react";
+// import './BookingApp.css'
+// const BookingApp = () => {
+
+//   const allRooms = [
+//     { number: 1, status: 'booked', img: './images/download (1).jpeg', price: 100 },
+//     { number: 2, status: 'booked', img: './images/download (1).jpeg', price: 200 },
+//     { number: 3, status: 'booked', img: './images/download (1).jpeg', price: 150 },
+//     { number: 4, status: 'booked', img: './images/download (1).jpeg', price: 100 },
+//     { number: 5, status: 'available', img: './images/download (1).jpeg', price: 100 },
+//     { number: 6, status: 'available', img: './images/download (1).jpeg', price: 90 },
+//     { number: 7, status: 'available', img: './images/download (1).jpeg', price: 100 },
+//     { number: 8, status: 'available', img: './images/download (1).jpeg', price: 120 },
+//     { number: 9, status: 'reserved', img: './images/download (1).jpeg', price: 130 },
+//     { number: 10, status: 'reserved', img: './images/download (1).jpeg', price: 100 }
+//   ];
+
+//   // const [rooms, setRooms] = useState(allRooms);
+//   const [filteredRooms, setFilteredRooms] = useState(allRooms);
+//   const [checkinDate, setCheckinDate] = useState("");
+//   const [checkoutDate, setCheckoutDate] = useState("");
+//   const [showAvailability, setShowAvailability] = useState(false);
+
+//   useEffect(() => {
+//     if (checkinDate && checkoutDate) {
+//       setShowAvailability(true);
+//     } else {
+//       setShowAvailability(false);
+//     }
+//   }, [checkinDate, checkoutDate]);
+
+//   const filterRooms = (status) => {
+//     if (status === "all") {
+//       setFilteredRooms(allRooms);
+//     } else {
+//       setFilteredRooms(allRooms.filter((room) => room.status === status));
+//     }
+//   };
+
+//   const renderRoomCards = (rooms) => {
+//     return rooms.map((room) => (
+//       <div className={`room-card ${room.status}`} key={room.number}>
+//         <img src={room.img} alt={`Room ${room.number}`} className="room-img" />
+//         <h4>Room {room.number}</h4>
+//         <p>Price: ${room.price}</p>
+//         <p>
+//           {room.status === "available" && (
+//             <span className="status available">Available</span>
+//           )}
+//           {room.status === "booked" && (
+//             <span className="status booked">Booked</span>
+//           )}
+//           {room.status === "reserved" && (
+//             <span className="status reserved">Reserved &#128274;</span>
+//           )}
+//         </p>
+//         <button
+//           className="btn-book"
+//           disabled={room.status !== "available"}
+//           // onClick={() => openModal(room.number)}
+//         >
+//           Book Now
+//         </button>
+//       </div>
+//     ));
+//   };
+
+//   const renderRoomTable = (rooms, checkinDate, checkoutDate) => {
+//     const start = new Date(checkinDate);
+//     const end = new Date(checkoutDate);
+//     const dayCount = Math.ceil((end - start) / (1000 * 60 * 60 * 24));
+
+//     let availabilityHtml = (
+//       <table>
+//         <thead>
+//           <tr>
+//             <th>Room Number</th>
+//             {[...Array(dayCount)].map((_, i) => {
+//               const currentDay = new Date(start);
+//               currentDay.setDate(start.getDate() + i);
+//               return (
+//                 <th key={i}>
+//                   {currentDay.toLocaleString("en-US", {
+//                     weekday: "long",
+//                     day: "numeric",
+//                   })}
+//                 </th>
+//               );
+//             })}
+//           </tr>
+//         </thead>
+//         <tbody>
+//           {rooms.map((room) => (
+//             <tr key={room.number}>
+//               <td>Room {room.number}</td>
+//               {[...Array(dayCount)].map((_, i) => {
+//                 const currentDay = new Date(start);
+//                 currentDay.setDate(start.getDate() + i);
+//                 let statusSymbol = "";
+
+//                 if (room.status === "available") {
+//                   statusSymbol = (
+//                     <span style={{ color: "green" }}>●</span>
+//                   ); // Green dot
+//                 } else if (room.status === "booked") {
+//                   statusSymbol = (
+//                     <span style={{ color: "red" }}>●</span>
+//                   ); // Red dot
+//                 } else if (room.status === "reserved") {
+//                   statusSymbol = "🔒"; // Lock icon
+//                 }
+
+//                 return <td key={i}>{statusSymbol}</td>;
+//               })}
+//             </tr>
+//           ))}
+//         </tbody>
+//       </table>
+//     );
+
+//     return availabilityHtml;
+//   };
+
+//   const handleSearchRooms = () => {
+//     const today = new Date();
+//     const checkin = new Date(checkinDate);
+//     const checkout = new Date(checkoutDate);
+
+//     if (
+//       checkin > today &&
+//       checkin <= new Date(today.setDate(today.getDate() + 7)) &&
+//       checkout > checkin
+//     ) {
+//       setShowAvailability(true);
+//     } else {
+//       alert("Please select valid dates for next week.");
+//       setShowAvailability(false);
+//     }
+//   };
+
+//   return (
+//     <div className="container">
+
+//       <div className="room-availability">
+//         <label htmlFor="checkin">Check-in Date:</label>
+//         <input
+//           type="date"
+//           id="checkin"
+//           value={checkinDate}
+//           onChange={(e) => setCheckinDate(e.target.value)}
+//         />
+//         <label htmlFor="checkout">Check-out Date:</label>
+//         <input
+//           type="date"
+//           id="checkout"
+//           value={checkoutDate}
+//           onChange={(e) => setCheckoutDate(e.target.value)}
+//         />
+//         <button onClick={handleSearchRooms}>Search Rooms</button>
+//       </div>
+
+//       {showAvailability && (
+//         <div id="room-availability">
+//           {renderRoomTable(filteredRooms, checkinDate, checkoutDate)}
+//         </div>
+//       )}
+
+//       <div id="dates-display">
+//         {checkinDate && <p>Check-in Date: {new Date(checkinDate).toLocaleDateString()}</p>}
+//         {checkoutDate && <p>Check-out Date: {new Date(checkoutDate).toLocaleDateString()}</p>}
+//       </div>
+//       <div id="room-cards">{renderRoomCards(filteredRooms)}</div>
+
+//     </div>
+//   );
+// };
+
+// export default BookingApp;
+
+
+
+
+
+//.....
+import React, { useState,  useEffect } from "react";
+// import React from "react";
+// import { useNavigate } from "react-router-dom";
 import './BookingApp.css'
+
 const BookingApp = () => {
 
   const allRooms = [
     { number: 1, status: 'booked', img: './images/download (1).jpeg', price: 100 },
-    { number: 2, status: 'booked', img: 'vip-room.jpg', price: 200 },
-    { number: 3, status: 'booked', img: 'vip-room.jpg', price: 150 },
-    { number: 4, status: 'booked', img: 'vip-room1.jpg', price: 100 },
-    { number: 5, status: 'available', img: 'general.jpeg', price: 100 },
-    { number: 6, status: 'available', img: 'general1.jpg', price: 90 },
-    { number: 7, status: 'available', img: 'general.jpeg', price: 100 },
-    { number: 8, status: 'available', img: 'general1.jpg', price: 120 },
-    { number: 9, status: 'reserved', img: 'suite-room.jpg', price: 130 },
-    { number: 10, status: 'reserved', img: 'suite-room1.jpg', price: 100 }
+    { number: 2, status: 'booked', img: './images/download (1).jpeg', price: 200 },
+    { number: 3, status: 'booked', img: './images/download (1).jpeg', price: 150 },
+    { number: 4, status: 'booked', img: './images/download (1).jpeg', price: 100 },
+    { number: 5, status: 'available', img: './images/download (1).jpeg', price: 100 },
+    { number: 6, status: 'available', img: './images/download (1).jpeg', price: 90 },
+    { number: 7, status: 'available', img: './images/download (1).jpeg', price: 100 },
+    { number: 8, status: 'available', img: './images/download (1).jpeg', price: 120 },
+    { number: 9, status: 'reserved', img: './images/download (1).jpeg', price: 130 },
+    { number: 10, status: 'reserved', img: './images/download (1).jpeg', price: 100 }
   ];
 
-  const [rooms, setRooms] = useState(allRooms);
-  const [filteredRooms, setFilteredRooms] = useState(allRooms);
   const [checkinDate, setCheckinDate] = useState("");
   const [checkoutDate, setCheckoutDate] = useState("");
   const [showAvailability, setShowAvailability] = useState(false);
@@ -526,42 +711,6 @@ const BookingApp = () => {
       setShowAvailability(false);
     }
   }, [checkinDate, checkoutDate]);
-
-  const filterRooms = (status) => {
-    if (status === "all") {
-      setFilteredRooms(allRooms);
-    } else {
-      setFilteredRooms(allRooms.filter((room) => room.status === status));
-    }
-  };
-
-  const renderRoomCards = (rooms) => {
-    return rooms.map((room) => (
-      <div className={`room-card ${room.status}`} key={room.number}>
-        <img src={room.img} alt={`Room ${room.number}`} className="room-img" />
-        <h4>Room {room.number}</h4>
-        <p>Price: ${room.price}</p>
-        <p>
-          {room.status === "available" && (
-            <span className="status available">Available</span>
-          )}
-          {room.status === "booked" && (
-            <span className="status booked">Booked</span>
-          )}
-          {room.status === "reserved" && (
-            <span className="status reserved">Reserved &#128274;</span>
-          )}
-        </p>
-        <button
-          className="btn-book"
-          disabled={room.status !== "available"}
-          // onClick={() => openModal(room.number)}
-        >
-          Book Now
-        </button>
-      </div>
-    ));
-  };
 
   const renderRoomTable = (rooms, checkinDate, checkoutDate) => {
     const start = new Date(checkinDate);
@@ -638,28 +787,27 @@ const BookingApp = () => {
 
   return (
     <div className="container">
-
       <div className="room-availability">
-        <label htmlFor="checkin">Check-in Date:</label>
+        <label id="check" htmlFor="checkin">Check-in Date:</label>
         <input
           type="date"
           id="checkin"
           value={checkinDate}
           onChange={(e) => setCheckinDate(e.target.value)}
         />
-        <label htmlFor="checkout">Check-out Date:</label>
+        <label id="check" htmlFor="checkout">Check-out Date:</label>
         <input
           type="date"
           id="checkout"
           value={checkoutDate}
           onChange={(e) => setCheckoutDate(e.target.value)}
         />
-        <button onClick={handleSearchRooms}>Search Rooms</button>
+        <button id="bt1" onClick={handleSearchRooms}>Search Rooms</button>
       </div>
 
       {showAvailability && (
         <div id="room-availability">
-          {renderRoomTable(filteredRooms, checkinDate, checkoutDate)}
+          {renderRoomTable(allRooms, checkinDate, checkoutDate)}
         </div>
       )}
 
@@ -667,8 +815,6 @@ const BookingApp = () => {
         {checkinDate && <p>Check-in Date: {new Date(checkinDate).toLocaleDateString()}</p>}
         {checkoutDate && <p>Check-out Date: {new Date(checkoutDate).toLocaleDateString()}</p>}
       </div>
-      {/* <div id="room-cards">{renderRoomCards(filteredRooms)}</div> */}
-
     </div>
   );
 };

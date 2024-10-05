@@ -16,11 +16,21 @@ background-repeat: no-repeat;
 background-position: fixed;
 }
 
+.active{
+  color: peru;
+}
 
 .App {
+  /* background-image: url('/public/images/IMG-20241004-WA0015.jpg'); */
+  background-image: url('/public/images/header.jpg');
+  /* background: linear-gradient(to right, #dbc8c8, #0057bb); Background gradient */
+
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 /* Logo Styles */
@@ -91,7 +101,7 @@ background-position: fixed;
 
 /* Hero Section */
 .hero {
-  /* background-image: url('D:\HOTEL\header\public\images\chair.jpg'); Update with your image */
+  /* background-image: url('D:\HOTEL\header\public\images\chair.jpg');  */
   background-size: cover;
   background-position: center;
   height: 60vh;
